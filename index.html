@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Raghul R | Program Manager – Serialization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(255,255,255,0.08);
+      --accent: #38bdf8;
+      --accent2: #22c55e;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #020617, var(--bg));
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      gap: 32px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(34,197,94,0.1));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: grid;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    header h2 {
+      font-size: 18px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    header p {
+      max-width: 900px;
+      color: var(--muted);
+    }
+
+    /* Section Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    /* Skills */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.15);
+      border: 1px solid rgba(56,189,248,0.3);
+      font-size: 14px;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      gap: 24px;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--accent), var(--accent2));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -3px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .timeline-item h4 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 18px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    /* Awards */
+    .awards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .award {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(34,197,94,0.1);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <h1>Raghul R</h1>
+      <h2>Program Manager – Global Serialization | SAP ATTP SME</h2>
+      <p>
+        Experienced software engineer and program manager with strong expertise in
+        pharmaceutical serialization, SAP ATTP, supply chain compliance and automation.
+        Specialized in preventing drug counterfeiting through validated, GxP-compliant
+        global serialization solutions.
+      </p>
+    </header>
+
+    <!-- SKILLS -->
+    <section class="card">
+      <h3>Skill Set</h3>
+      <div class="skills">
+        <div class="skill">SAP ECC</div>
+        <div class="skill">SAP ATTP</div>
+        <div class="skill">TraceLink</div>
+        <div class="skill">SAP BTP-IS</div>
+        <div class="skill">Power Apps</div>
+        <div class="skill">Power BI</div>
+        <div class="skill">Power Automate</div>
+        <div class="skill">Python</div>
+        <div class="skill">VBA</div>
+        <div class="skill">Tosca</div>
+        <div class="skill">Postman</div>
+        <div class="skill">SOAP UI</div>
+        <div class="skill">ServiceNow</div>
+        <div class="skill">GxP / GMP</div>
+      </div>
+    </section>
+
+    <!-- VALUE CREATION -->
+    <section class="card">
+      <h3>Value Creation</h3>
+      <ul>
+        <li>Automated regulatory reporting using Python and VBA, reducing manual effort.</li>
+        <li>Built Power Apps solutions for ticketing, GTIN management and partner dashboards.</li>
+        <li>Improved existing Power Apps with validations, auto triggers and notifications.</li>
+        <li>Delivered interim automation solutions for Egypt and Brazil compliance.</li>
+      </ul>
+    </section>
+
+    <!-- WORK HISTORY -->
+    <section class="card">
+      <h3>Work History</h3>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h4>Viatris Pharmaceutical Ltd – Manager</h4>
+          <span>Aug 2023 – Present | Bangalore</span>
+          <ul>
+            <li>Program Manager in Global Serialization Team.</li>
+            <li>Leading S/4 ATTP implementations and system upgrades.</li>
+            <li>Serialization master data SME ensuring regulatory compliance.</li>
+            <li>Architecture design, EPCIS handling and BTP-IS integrations.</li>
+            <li>Automation using Power Apps, Power BI and Power Automate.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Accenture Services Pvt Ltd – Application Development Senior Analyst</h4>
+          <span>Oct 2017 – Aug 2023 | Chennai</span>
+          <ul>
+            <li>Senior Business Analyst for Life Sciences Track & Trace solutions.</li>
+            <li>Worked on EU FMD, US DSCSA, Russia, China, India, Brazil mandates.</li>
+            <li>Migration from TraceLink to SAP ATTP (L4 systems).</li>
+            <li>SME for serialization, EPCIS, master data and integrations.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="card">
+      <h3>Education</h3>
+      <ul>
+        <li><strong>MBA – HR Management</strong>, Anna University (2017 – 2019)</li>
+        <li><strong>B.E – Electronics & Instrumentation</strong>, Panimalar Engineering College (2013 – 2017)</li>
+      </ul>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="card">
+      <h3>Awards</h3>
+      <div class="awards">
+        <div class="award">Accenture Excellence Award – 2021</div>
+        <div class="award">Delivery Champion – 2019, 2020, 2022</div>
+        <div class="award">Pfizer Innovator Award – 2022</div>
+        <div class="award">Viatris Excellence Award – 2024</div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Raghul R | Interactive Resume
+    </footer>
+
+  </div>
+</body>
+</html>
