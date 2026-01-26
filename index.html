@@ -1,286 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Raghul R | Program Manager – Serialization</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Raghul R | Interactive Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: rgba(255,255,255,0.08);
-      --accent: #38bdf8;
-      --accent2: #22c55e;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --border: rgba(255,255,255,0.15);
-    }
+<style>
+/* ================= THEME VARIABLES ================= */
+:root {
+  --bg:#0b1220;
+  --card:#111a2f;
+  --accent:#38bdf8;
+  --accent2:#22c55e;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --border:rgba(255,255,255,0.12);
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, sans-serif;
-    }
+.light {
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(0,0,0,0.1);
+}
 
-    body {
-      background: radial-gradient(circle at top, #020617, var(--bg));
-      color: var(--text);
-      line-height: 1.6;
-      padding: 40px 20px;
-    }
+/* ================= BASE ================= */
+* { box-sizing:border-box; font-family:Inter, system-ui, sans-serif; }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      gap: 32px;
-    }
+body {
+  background:radial-gradient(circle at top, #020617, var(--bg));
+  color:var(--text);
+  margin:0;
+  padding:30px 16px;
+  transition:.3s;
+}
 
-    /* Header */
-    header {
-      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(34,197,94,0.1));
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      display: grid;
-      gap: 12px;
-      backdrop-filter: blur(12px);
-    }
+.light body {
+  background:var(--bg);
+}
 
-    header h1 {
-      font-size: 36px;
-      font-weight: 700;
-    }
+.container { max-width:1100px; margin:auto; }
 
-    header h2 {
-      font-size: 18px;
-      color: var(--accent);
-      font-weight: 500;
-    }
+/* ================= HEADER ================= */
+header {
+  background:linear-gradient(135deg, rgba(56,189,248,.2), rgba(34,197,94,.15));
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:30px;
+  margin-bottom:20px;
+}
 
-    header p {
-      max-width: 900px;
-      color: var(--muted);
-    }
+.header-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
 
-    /* Section Card */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+header h1 { margin:0; font-size:34px; }
+header h2 { color:var(--accent); font-size:18px; font-weight:500; }
+header p { color:var(--muted); max-width:900px; }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    }
+/* ================= BUTTONS ================= */
+.actions button {
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  margin-left:6px;
+  transition:.3s;
+}
 
-    .card h3 {
-      font-size: 22px;
-      margin-bottom: 16px;
-      color: var(--accent);
-    }
+.actions button:hover {
+  background:var(--accent);
+  color:#000;
+}
 
-    /* Skills */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+/* ================= TABS ================= */
+.tabs {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+}
 
-    .skill {
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.15);
-      border: 1px solid rgba(56,189,248,0.3);
-      font-size: 14px;
-    }
+.tab-labels {
+  display:flex;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
+}
 
-    /* Timeline */
-    .timeline {
-      display: grid;
-      gap: 24px;
-      position: relative;
-      padding-left: 24px;
-    }
+.tab-labels button {
+  background:none;
+  border:none;
+  padding:14px 20px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.3s;
+}
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(var(--accent), var(--accent2));
-    }
+.tab-labels button.active {
+  color:var(--accent);
+  border-bottom:3px solid var(--accent);
+}
 
-    .timeline-item {
-      position: relative;
-      padding-left: 24px;
-    }
+.tab-content {
+  display:none;
+  padding:30px;
+  animation:slide .4s ease;
+}
 
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -3px;
-      top: 6px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
+.tab-content.active { display:block; }
 
-    .timeline-item h4 {
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
+@keyframes slide {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:none; }
+}
 
-    .timeline-item span {
-      font-size: 14px;
-      color: var(--muted);
-    }
+h3 { color:var(--accent); margin-top:0; }
 
-    ul {
-      margin-top: 10px;
-      padding-left: 18px;
-    }
+/* ================= SKILL BARS ================= */
+.skill {
+  margin-bottom:14px;
+}
 
-    ul li {
-      margin-bottom: 6px;
-      color: var(--muted);
-    }
+.skill span {
+  font-size:14px;
+  display:block;
+  margin-bottom:4px;
+}
 
-    /* Awards */
-    .awards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
+.bar {
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  overflow:hidden;
+}
 
-    .award {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      background: rgba(34,197,94,0.1);
-      text-align: center;
-      font-size: 14px;
-    }
+.bar-fill {
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius:999px;
+  transition:width 1s ease;
+}
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 20px;
-    }
-  </style>
+/* ================= TIMELINE ================= */
+.timeline {
+  border-left:2px solid var(--accent);
+  padding-left:22px;
+}
+
+.role { margin-bottom:26px; }
+.role h4 { margin:0; }
+.role span { color:var(--muted); font-size:14px; }
+
+ul { padding-left:18px; }
+li { margin-bottom:8px; color:var(--muted); }
+
+/* ================= PRINT (PDF) ================= */
+@media print {
+  body { background:#fff; color:#000; }
+  .actions, .tab-labels { display:none; }
+  .tab-content { display:block !important; page-break-inside:avoid; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER -->
-    <header>
+<header>
+  <div class="header-top">
+    <div>
       <h1>Raghul R</h1>
       <h2>Program Manager – Global Serialization | SAP ATTP SME</h2>
-      <p>
-        Experienced software engineer and program manager with strong expertise in
-        pharmaceutical serialization, SAP ATTP, supply chain compliance and automation.
-        Specialized in preventing drug counterfeiting through validated, GxP-compliant
-        global serialization solutions.
-      </p>
-    </header>
-
-    <!-- SKILLS -->
-    <section class="card">
-      <h3>Skill Set</h3>
-      <div class="skills">
-        <div class="skill">SAP ECC</div>
-        <div class="skill">SAP ATTP</div>
-        <div class="skill">TraceLink</div>
-        <div class="skill">SAP BTP-IS</div>
-        <div class="skill">Power Apps</div>
-        <div class="skill">Power BI</div>
-        <div class="skill">Power Automate</div>
-        <div class="skill">Python</div>
-        <div class="skill">VBA</div>
-        <div class="skill">Tosca</div>
-        <div class="skill">Postman</div>
-        <div class="skill">SOAP UI</div>
-        <div class="skill">ServiceNow</div>
-        <div class="skill">GxP / GMP</div>
-      </div>
-    </section>
-
-    <!-- VALUE CREATION -->
-    <section class="card">
-      <h3>Value Creation</h3>
-      <ul>
-        <li>Automated regulatory reporting using Python and VBA, reducing manual effort.</li>
-        <li>Built Power Apps solutions for ticketing, GTIN management and partner dashboards.</li>
-        <li>Improved existing Power Apps with validations, auto triggers and notifications.</li>
-        <li>Delivered interim automation solutions for Egypt and Brazil compliance.</li>
-      </ul>
-    </section>
-
-    <!-- WORK HISTORY -->
-    <section class="card">
-      <h3>Work History</h3>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <h4>Viatris Pharmaceutical Ltd – Manager</h4>
-          <span>Aug 2023 – Present | Bangalore</span>
-          <ul>
-            <li>Program Manager in Global Serialization Team.</li>
-            <li>Leading S/4 ATTP implementations and system upgrades.</li>
-            <li>Serialization master data SME ensuring regulatory compliance.</li>
-            <li>Architecture design, EPCIS handling and BTP-IS integrations.</li>
-            <li>Automation using Power Apps, Power BI and Power Automate.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h4>Accenture Services Pvt Ltd – Application Development Senior Analyst</h4>
-          <span>Oct 2017 – Aug 2023 | Chennai</span>
-          <ul>
-            <li>Senior Business Analyst for Life Sciences Track & Trace solutions.</li>
-            <li>Worked on EU FMD, US DSCSA, Russia, China, India, Brazil mandates.</li>
-            <li>Migration from TraceLink to SAP ATTP (L4 systems).</li>
-            <li>SME for serialization, EPCIS, master data and integrations.</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="card">
-      <h3>Education</h3>
-      <ul>
-        <li><strong>MBA – HR Management</strong>, Anna University (2017 – 2019)</li>
-        <li><strong>B.E – Electronics & Instrumentation</strong>, Panimalar Engineering College (2013 – 2017)</li>
-      </ul>
-    </section>
-
-    <!-- AWARDS -->
-    <section class="card">
-      <h3>Awards</h3>
-      <div class="awards">
-        <div class="award">Accenture Excellence Award – 2021</div>
-        <div class="award">Delivery Champion – 2019, 2020, 2022</div>
-        <div class="award">Pfizer Innovator Award – 2022</div>
-        <div class="award">Viatris Excellence Award – 2024</div>
-      </div>
-    </section>
-
-    <footer>
-      © 2026 Raghul R | Interactive Resume
-    </footer>
-
+    </div>
+    <div class="actions">
+      <button onclick="toggleTheme()">🌙 / ☀️</button>
+      <button onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
   </div>
+  <p>
+    Experienced software engineer and program manager with strong expertise in
+    pharmaceutical serialization, SAP ATTP, GMP compliance and automation.
+  </p>
+</header>
+
+<section class="tabs">
+
+<div class="tab-labels">
+  <button class="active" onclick="openTab(0)">Summary</button>
+  <button onclick="openTab(1)">Skills</button>
+  <button onclick="openTab(2)">Value Creation</button>
+  <button onclick="openTab(3)">Experience</button>
+  <button onclick="openTab(4)">Education</button>
+  <button onclick="openTab(5)">Awards</button>
+</div>
+
+<div class="tab-content active">
+  <h3>Professional Summary</h3>
+  <p class="muted">
+    End-to-end experience in global pharmaceutical serialization programs,
+    preventing counterfeiting through validated SAP ATTP and Track & Trace solutions.
+  </p>
+</div>
+
+<div class="tab-content">
+  <h3>Skill Proficiency</h3>
+
+  <div class="skill"><span>SAP ATTP</span><div class="bar"><div class="bar-fill" data-width="95%"></div></div></div>
+  <div class="skill"><span>SAP ECC</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
+  <div class="skill"><span>TraceLink</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
+  <div class="skill"><span>Power Apps / Power BI</span><div class="bar"><div class="bar-fill" data-width="85%"></div></div></div>
+  <div class="skill"><span>Python & VBA Automation</span><div class="bar"><div class="bar-fill" data-width="80%"></div></div></div>
+  <div class="skill"><span>GxP / GMP Compliance</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
+</div>
+
+<div class="tab-content">
+  <h3>Value Creation</h3>
+  <ul>
+    <li>Automated COVID product operations using VBA</li>
+    <li>Python solutions for Brazil & Egypt reporting</li>
+    <li>Built GTIN, ticketing and partner dashboards</li>
+    <li>Reduced BAU effort via Power Automate</li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <h3>Work Experience</h3>
+  <div class="timeline">
+    <div class="role">
+      <h4>Viatris Pharmaceutical Ltd – Manager</h4>
+      <span>Aug 2023 – Present</span>
+      <ul>
+        <li>Program Manager – Global Serialization</li>
+        <li>S/4 ATTP implementation & upgrades</li>
+        <li>BTP-IS, EPCIS, master data SME</li>
+      </ul>
+    </div>
+    <div class="role">
+      <h4>Accenture – Senior Analyst</h4>
+      <span>Oct 2017 – Aug 2023</span>
+      <ul>
+        <li>Life-sciences Track & Trace SME</li>
+        <li>EU, US, Russia, China, India mandates</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content">
+  <h3>Education & Certifications</h3>
+  <ul>
+    <li>MBA – HR Management, Anna University</li>
+    <li>B.E – Electronics & Instrumentation</li>
+    <li>TraceLink Admin, Tosca, Python, Power Apps, GenAI</li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <h3>Awards & Languages</h3>
+  <ul>
+    <li>Viatris Excellence Award – 2024</li>
+    <li>Pfizer Innovator – 2022</li>
+    <li>Delivery Champion – Multiple years</li>
+    <li>Tamil, English, Hindi</li>
+  </ul>
+</div>
+
+</section>
+</div>
+
+<script>
+function openTab(index) {
+  document.querySelectorAll('.tab-content').forEach((c,i)=>{
+    c.classList.toggle('active', i===index);
+  });
+  document.querySelectorAll('.tab-labels button').forEach((b,i)=>{
+    b.classList.toggle('active', i===index);
+  });
+
+  document.querySelectorAll('.bar-fill').forEach(bar=>{
+    bar.style.width = '0';
+    if(index === 1) {
+      setTimeout(()=> bar.style.width = bar.dataset.width, 200);
+    }
+  });
+}
+
+function toggleTheme() {
+  document.documentElement.classList.toggle('light');
+  localStorage.theme = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+}
+
+if(localStorage.theme === 'light') toggleTheme();
+
+function downloadPDF() {
+  window.print();
+}
+</script>
+
 </body>
 </html>
