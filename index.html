@@ -15,7 +15,6 @@
   --muted:#94a3b8;
   --border:rgba(255,255,255,0.12);
 }
-
 .light {
   --bg:#f5f7fb;
   --card:#ffffff;
@@ -23,165 +22,100 @@
   --muted:#475569;
   --border:rgba(0,0,0,0.1);
 }
-
-* { box-sizing:border-box; font-family:Inter, system-ui, sans-serif; }
-
+* { box-sizing:border-box; font-family:Inter,system-ui,sans-serif; }
 body {
-  background:radial-gradient(circle at top, #020617, var(--bg));
+  background:radial-gradient(circle at top,#020617,var(--bg));
   color:var(--text);
-  margin:0;
-  padding:30px 16px;
-  transition:.3s;
+  margin:0; padding:24px;
 }
-
 .container { max-width:1100px; margin:auto; }
 
-/* ================= HEADER ================= */
+/* Header */
 header {
-  background:linear-gradient(135deg, rgba(56,189,248,.2), rgba(34,197,94,.15));
+  background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(34,197,94,.15));
   border:1px solid var(--border);
   border-radius:22px;
-  padding:28px;
-  margin-bottom:20px;
+  padding:24px;
 }
-
 .header-grid {
   display:grid;
   grid-template-columns:120px 1fr auto;
   gap:20px;
   align-items:center;
 }
-
 .profile-pic {
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  overflow:hidden;
-  border:3px solid var(--accent);
+  width:110px;height:110px;border-radius:50%;
+  overflow:hidden;border:3px solid var(--accent);
 }
-
-.profile-pic img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
+.profile-pic img { width:100%;height:100%;object-fit:cover; }
 .actions button {
-  background:var(--card);
+  padding:10px 14px;border-radius:12px;
   border:1px solid var(--border);
-  color:var(--text);
-  padding:10px 14px;
-  border-radius:12px;
-  cursor:pointer;
-  margin-left:6px;
+  background:var(--card);color:var(--text);
+  cursor:pointer;margin-left:6px;
 }
+.actions button:hover { background:var(--accent); color:#000; }
 
-.actions button:hover {
-  background:var(--accent);
-  color:#000;
-}
-
-header h1 { margin:0; font-size:32px; }
-header h2 { color:var(--accent); font-size:17px; font-weight:500; }
-header p { color:var(--muted); }
-
-/* ================= TABS ================= */
+/* Tabs */
 .tabs {
+  margin-top:20px;
   background:var(--card);
   border:1px solid var(--border);
   border-radius:22px;
   overflow:hidden;
 }
-
-.tab-labels {
-  display:flex;
-  flex-wrap:wrap;
-  border-bottom:1px solid var(--border);
-}
-
+.tab-labels { display:flex; flex-wrap:wrap; border-bottom:1px solid var(--border); }
 .tab-labels button {
-  background:none;
-  border:none;
-  padding:14px 20px;
-  cursor:pointer;
-  color:var(--muted);
+  padding:14px 20px;background:none;border:none;
+  color:var(--muted);cursor:pointer;
 }
-
 .tab-labels button.active {
   color:var(--accent);
   border-bottom:3px solid var(--accent);
 }
-
 .tab-content {
-  display:none;
-  padding:30px;
-  animation:slide .4s ease;
+  display:none;padding:28px;
+  animation:fade .4s ease;
 }
-
 .tab-content.active { display:block; }
+@keyframes fade { from{opacity:0;transform:translateY(8px)} to{opacity:1} }
 
-@keyframes slide {
-  from {opacity:0; transform:translateY(10px);}
-  to {opacity:1; transform:none;}
-}
-
-/* ================= SKILLS ================= */
+/* Skills */
 .skill { margin-bottom:14px; }
-.bar {
-  height:10px;
-  background:rgba(255,255,255,.15);
-  border-radius:999px;
-}
+.bar { height:10px;background:rgba(255,255,255,.15);border-radius:999px; }
 .bar-fill {
-  height:100%;
-  width:0;
+  height:100%;width:0;
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border-radius:999px;
-  transition:1s;
+  border-radius:999px;transition:1s;
 }
 
-/* ================= MODAL ================= */
+/* Modal */
 .modal {
-  position:fixed;
-  inset:0;
+  position:fixed; inset:0;
   background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
+  display:none; align-items:center; justify-content:center;
 }
-
 .modal-box {
   background:var(--card);
-  padding:26px;
-  border-radius:18px;
-  width:320px;
-  border:1px solid var(--border);
+  padding:24px;border-radius:18px;
+  width:340px;border:1px solid var(--border);
 }
-
 .modal-box input {
-  width:100%;
-  padding:10px;
-  border-radius:10px;
+  width:100%;padding:10px;border-radius:10px;
   border:1px solid var(--border);
-  background:none;
-  color:var(--text);
-  margin:10px 0;
+  background:none;color:var(--text);
+  margin:12px 0;
 }
-
 .modal-box button {
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  background:var(--accent);
-  cursor:pointer;
+  width:100%;padding:10px;
+  border-radius:10px;border:none;
+  background:var(--accent);cursor:pointer;
 }
 
-/* ================= CONTACT ================= */
-.contact-details {
-  display:none;
-  margin-top:10px;
-  color:var(--muted);
+.contact-details { display:none;color:var(--muted); margin-top:8px; }
+
+.visitor-count {
+  font-size:13px;color:var(--muted); margin-top:6px;
 }
 
 @media print {
@@ -196,21 +130,21 @@ header p { color:var(--muted); }
 
 <header>
   <div class="header-grid">
-
     <div class="profile-pic">
-      <img src="profile.jpg" alt="Profile Photo">
+      <img src="profile.jpg" alt="Profile">
     </div>
 
     <div>
       <h1>Raghul R</h1>
       <h2>Program Manager – Global Serialization | SAP ATTP SME</h2>
-      <p>Driving pharmaceutical serialization programs to prevent counterfeiting.</p>
+      <p>Preventing counterfeiting through validated serialization solutions.</p>
 
       <div class="contact-details" id="contactDetails">
-        📧 raghul@email.com <br>
-        🔗 linkedin.com/in/raghulr <br>
+        📧 yourname@email.com<br>
+        🔗 linkedin.com/in/yourprofile<br>
         📍 Bangalore, India
       </div>
+      <div class="visitor-count" id="visitorCount"></div>
     </div>
 
     <div class="actions">
@@ -218,7 +152,6 @@ header p { color:var(--muted); }
       <button onclick="openContact()">📩 Contact Me</button>
       <button onclick="window.print()">⬇ PDF</button>
     </div>
-
   </div>
 </header>
 
@@ -227,50 +160,86 @@ header p { color:var(--muted); }
 <div class="tab-labels">
   <button class="active" onclick="openTab(0)">Summary</button>
   <button onclick="openTab(1)">Skills</button>
-  <button onclick="openTab(2)">Experience</button>
+  <button onclick="openTab(2)">Value</button>
+  <button onclick="openTab(3)">Experience</button>
+  <button onclick="openTab(4)">Education</button>
+  <button onclick="openTab(5)">Awards</button>
 </div>
 
 <div class="tab-content active">
   <p>
-    Experienced professional with deep expertise in SAP ATTP, Track & Trace,
-    GMP compliance and global serialization mandates.
+    Experienced software engineer and program manager with deep expertise in
+    pharmaceutical serialization, SAP ATTP, GMP and global regulatory compliance.
   </p>
 </div>
 
 <div class="tab-content">
   <div class="skill"><span>SAP ATTP</span><div class="bar"><div class="bar-fill" data="95%"></div></div></div>
+  <div class="skill"><span>TraceLink</span><div class="bar"><div class="bar-fill" data="90%"></div></div></div>
   <div class="skill"><span>Power Platform</span><div class="bar"><div class="bar-fill" data="85%"></div></div></div>
+  <div class="skill"><span>Python & VBA</span><div class="bar"><div class="bar-fill" data="80%"></div></div></div>
 </div>
 
 <div class="tab-content">
-  <p>Viatris – Program Manager | Accenture – Senior Analyst</p>
+  <ul>
+    <li>Automated COVID operations using VBA</li>
+    <li>Python solutions for Brazil & Egypt reporting</li>
+    <li>Built GTIN, ticketing & partner dashboards</li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <ul>
+    <li><strong>Viatris</strong> – Program Manager (2023–Present)</li>
+    <li><strong>Accenture</strong> – Senior Analyst (2017–2023)</li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <ul>
+    <li>MBA – Anna University</li>
+    <li>B.E – Panimalar Engineering College</li>
+    <li>TraceLink, Tosca, Python, Power Apps, GenAI</li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <ul>
+    <li>Viatris Excellence Award – 2024</li>
+    <li>Pfizer Innovator – 2022</li>
+    <li>Tamil, English, Hindi</li>
+  </ul>
 </div>
 
 </section>
 </div>
 
-<!-- MODAL -->
+<!-- CONTACT MODAL -->
 <div class="modal" id="modal">
   <div class="modal-box">
-    <h3>Share your email</h3>
-    <p style="color:var(--muted)">I’ll reveal my contact details</p>
+    <h3>Contact Raghul</h3>
+    <p style="color:var(--muted)">Enter your email to proceed</p>
     <input type="email" id="visitorEmail" placeholder="you@email.com" required>
-    <button onclick="submitEmail()">Continue</button>
+    <button onclick="sendEmail()">Send Email</button>
   </div>
 </div>
 
 <script>
-function openTab(i){
-  document.querySelectorAll('.tab-content').forEach((t,x)=>{
-    t.classList.toggle('active',x===i)
-  });
-  document.querySelectorAll('.tab-labels button').forEach((b,x)=>{
-    b.classList.toggle('active',x===i)
-  });
+const OWNER_EMAIL = "yourname@email.com";
 
+/* Visitor count */
+let count = localStorage.getItem("visitCount") || 0;
+count++;
+localStorage.setItem("visitCount", count);
+document.getElementById("visitorCount").innerText =
+  "Profile viewed " + count + " times (this browser)";
+
+function openTab(i){
+  document.querySelectorAll('.tab-content').forEach((t,x)=>t.classList.toggle('active',x===i));
+  document.querySelectorAll('.tab-labels button').forEach((b,x)=>b.classList.toggle('active',x===i));
   document.querySelectorAll('.bar-fill').forEach(b=>{
     b.style.width='0';
-    if(i===1) setTimeout(()=>b.style.width=b.dataset.data,200);
+    if(i===1) setTimeout(()=>b.style.width=b.dataset,200);
   });
 }
 
@@ -279,14 +248,24 @@ function toggleTheme(){
 }
 
 function openContact(){
-  document.getElementById('modal').style.display='flex';
+  document.getElementById("modal").style.display="flex";
 }
 
-function submitEmail(){
-  const email=document.getElementById('visitorEmail').value;
-  if(!email) return;
-  document.getElementById('modal').style.display='none';
-  document.getElementById('contactDetails').style.display='block';
+function sendEmail(){
+  const email=document.getElementById("visitorEmail").value;
+  if(!email) return alert("Please enter email");
+
+  const body =
+`Visitor Email: ${email}
+Visited Count: ${count}
+
+I found your resume and would like to connect.`;
+
+  window.location.href =
+    `mailto:${OWNER_EMAIL}?subject=Resume Contact – Raghul R&body=${encodeURIComponent(body)}`;
+
+  document.getElementById("modal").style.display="none";
+  document.getElementById("contactDetails").style.display="block";
 }
 </script>
 
