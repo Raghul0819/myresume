@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ================= THEME VARIABLES ================= */
 :root {
   --bg:#0b1220;
   --card:#111a2f;
@@ -15,6 +16,7 @@
   --muted:#94a3b8;
   --border:rgba(255,255,255,0.12);
 }
+
 .light {
   --bg:#f5f7fb;
   --card:#ffffff;
@@ -22,105 +24,149 @@
   --muted:#475569;
   --border:rgba(0,0,0,0.1);
 }
-* { box-sizing:border-box; font-family:Inter,system-ui,sans-serif; }
+
+/* ================= BASE ================= */
+* { box-sizing:border-box; font-family:Inter, system-ui, sans-serif; }
+
 body {
-  background:radial-gradient(circle at top,#020617,var(--bg));
+  background:radial-gradient(circle at top, #020617, var(--bg));
   color:var(--text);
-  margin:0; padding:24px;
+  margin:0;
+  padding:30px 16px;
+  transition:.3s;
 }
+
+.light body {
+  background:var(--bg);
+}
+
 .container { max-width:1100px; margin:auto; }
 
-/* Header */
+/* ================= HEADER ================= */
 header {
-  background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(34,197,94,.15));
+  background:linear-gradient(135deg, rgba(56,189,248,.2), rgba(34,197,94,.15));
   border:1px solid var(--border);
   border-radius:22px;
-  padding:24px;
+  padding:30px;
+  margin-bottom:20px;
 }
-.header-grid {
-  display:grid;
-  grid-template-columns:120px 1fr auto;
-  gap:20px;
-  align-items:center;
-}
-.profile-pic {
-  width:110px;height:110px;border-radius:50%;
-  overflow:hidden;border:3px solid var(--accent);
-}
-.profile-pic img { width:100%;height:100%;object-fit:cover; }
-.actions button {
-  padding:10px 14px;border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--card);color:var(--text);
-  cursor:pointer;margin-left:6px;
-}
-.actions button:hover { background:var(--accent); color:#000; }
 
-/* Tabs */
+.header-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+header h1 { margin:0; font-size:34px; }
+header h2 { color:var(--accent); font-size:18px; font-weight:500; }
+header p { color:var(--muted); max-width:900px; }
+
+/* ================= BUTTONS ================= */
+.actions button {
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  margin-left:6px;
+  transition:.3s;
+}
+
+.actions button:hover {
+  background:var(--accent);
+  color:#000;
+}
+
+/* ================= TABS ================= */
 .tabs {
-  margin-top:20px;
   background:var(--card);
   border:1px solid var(--border);
   border-radius:22px;
   overflow:hidden;
 }
-.tab-labels { display:flex; flex-wrap:wrap; border-bottom:1px solid var(--border); }
-.tab-labels button {
-  padding:14px 20px;background:none;border:none;
-  color:var(--muted);cursor:pointer;
+
+.tab-labels {
+  display:flex;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
 }
+
+.tab-labels button {
+  background:none;
+  border:none;
+  padding:14px 20px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.3s;
+}
+
 .tab-labels button.active {
   color:var(--accent);
   border-bottom:3px solid var(--accent);
 }
+
 .tab-content {
-  display:none;padding:28px;
-  animation:fade .4s ease;
+  display:none;
+  padding:30px;
+  animation:slide .4s ease;
 }
+
 .tab-content.active { display:block; }
-@keyframes fade { from{opacity:0;transform:translateY(8px)} to{opacity:1} }
 
-/* Skills */
-.skill { margin-bottom:14px; }
-.bar { height:10px;background:rgba(255,255,255,.15);border-radius:999px; }
+@keyframes slide {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:none; }
+}
+
+h3 { color:var(--accent); margin-top:0; }
+
+/* ================= SKILL BARS ================= */
+.skill {
+  margin-bottom:14px;
+}
+
+.skill span {
+  font-size:14px;
+  display:block;
+  margin-bottom:4px;
+}
+
+.bar {
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  overflow:hidden;
+}
+
 .bar-fill {
-  height:100%;width:0;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border-radius:999px;transition:1s;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius:999px;
+  transition:width 1s ease;
 }
 
-/* Modal */
-.modal {
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.6);
-  display:none; align-items:center; justify-content:center;
-}
-.modal-box {
-  background:var(--card);
-  padding:24px;border-radius:18px;
-  width:340px;border:1px solid var(--border);
-}
-.modal-box input {
-  width:100%;padding:10px;border-radius:10px;
-  border:1px solid var(--border);
-  background:none;color:var(--text);
-  margin:12px 0;
-}
-.modal-box button {
-  width:100%;padding:10px;
-  border-radius:10px;border:none;
-  background:var(--accent);cursor:pointer;
+/* ================= TIMELINE ================= */
+.timeline {
+  border-left:2px solid var(--accent);
+  padding-left:22px;
 }
 
-.contact-details { display:none;color:var(--muted); margin-top:8px; }
+.role { margin-bottom:26px; }
+.role h4 { margin:0; }
+.role span { color:var(--muted); font-size:14px; }
 
-.visitor-count {
-  font-size:13px;color:var(--muted); margin-top:6px;
-}
+ul { padding-left:18px; }
+li { margin-bottom:8px; color:var(--muted); }
 
+/* ================= PRINT (PDF) ================= */
 @media print {
-  .actions,.tab-labels,.modal { display:none; }
-  .tab-content { display:block!important; }
+  body { background:#fff; color:#000; }
+  .actions, .tab-labels { display:none; }
+  .tab-content { display:block !important; page-break-inside:avoid; }
 }
 </style>
 </head>
@@ -129,30 +175,20 @@ header {
 <div class="container">
 
 <header>
-  <div class="header-grid">
-    <div class="profile-pic">
-      <img src="profile.jpg" alt="Profile">
-    </div>
-
+  <div class="header-top">
     <div>
       <h1>Raghul R</h1>
       <h2>Program Manager – Global Serialization | SAP ATTP SME</h2>
-      <p>Preventing counterfeiting through validated serialization solutions.</p>
-
-      <div class="contact-details" id="contactDetails">
-        📧 yourname@email.com<br>
-        🔗 linkedin.com/in/yourprofile<br>
-        📍 Bangalore, India
-      </div>
-      <div class="visitor-count" id="visitorCount"></div>
     </div>
-
     <div class="actions">
       <button onclick="toggleTheme()">🌙 / ☀️</button>
-      <button onclick="openContact()">📩 Contact Me</button>
-      <button onclick="window.print()">⬇ PDF</button>
+      <button onclick="downloadPDF()">⬇ Download PDF</button>
     </div>
   </div>
+  <p>
+    Experienced software engineer and program manager with strong expertise in
+    pharmaceutical serialization, SAP ATTP, GMP compliance and automation.
+  </p>
 </header>
 
 <section class="tabs">
@@ -160,53 +196,79 @@ header {
 <div class="tab-labels">
   <button class="active" onclick="openTab(0)">Summary</button>
   <button onclick="openTab(1)">Skills</button>
-  <button onclick="openTab(2)">Value</button>
+  <button onclick="openTab(2)">Value Creation</button>
   <button onclick="openTab(3)">Experience</button>
   <button onclick="openTab(4)">Education</button>
   <button onclick="openTab(5)">Awards</button>
 </div>
 
 <div class="tab-content active">
-  <p>
-    Experienced software engineer and program manager with deep expertise in
-    pharmaceutical serialization, SAP ATTP, GMP and global regulatory compliance.
+  <h3>Professional Summary</h3>
+  <p class="muted">
+    End-to-end experience in global pharmaceutical serialization programs,
+    preventing counterfeiting through validated SAP ATTP and Track & Trace solutions.
   </p>
 </div>
 
 <div class="tab-content">
-  <div class="skill"><span>SAP ATTP</span><div class="bar"><div class="bar-fill" data="95%"></div></div></div>
-  <div class="skill"><span>TraceLink</span><div class="bar"><div class="bar-fill" data="90%"></div></div></div>
-  <div class="skill"><span>Power Platform</span><div class="bar"><div class="bar-fill" data="85%"></div></div></div>
-  <div class="skill"><span>Python & VBA</span><div class="bar"><div class="bar-fill" data="80%"></div></div></div>
+  <h3>Skill Proficiency</h3>
+
+  <div class="skill"><span>SAP ATTP</span><div class="bar"><div class="bar-fill" data-width="95%"></div></div></div>
+  <div class="skill"><span>SAP ECC</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
+  <div class="skill"><span>TraceLink</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
+  <div class="skill"><span>Power Apps / Power BI</span><div class="bar"><div class="bar-fill" data-width="85%"></div></div></div>
+  <div class="skill"><span>Python & VBA Automation</span><div class="bar"><div class="bar-fill" data-width="80%"></div></div></div>
+  <div class="skill"><span>GxP / GMP Compliance</span><div class="bar"><div class="bar-fill" data-width="90%"></div></div></div>
 </div>
 
 <div class="tab-content">
+  <h3>Value Creation</h3>
   <ul>
-    <li>Automated COVID operations using VBA</li>
+    <li>Automated COVID product operations using VBA</li>
     <li>Python solutions for Brazil & Egypt reporting</li>
-    <li>Built GTIN, ticketing & partner dashboards</li>
+    <li>Built GTIN, ticketing and partner dashboards</li>
+    <li>Reduced BAU effort via Power Automate</li>
   </ul>
 </div>
 
 <div class="tab-content">
+  <h3>Work Experience</h3>
+  <div class="timeline">
+    <div class="role">
+      <h4>Viatris Pharmaceutical Ltd – Manager</h4>
+      <span>Aug 2023 – Present</span>
+      <ul>
+        <li>Program Manager – Global Serialization</li>
+        <li>S/4 ATTP implementation & upgrades</li>
+        <li>BTP-IS, EPCIS, master data SME</li>
+      </ul>
+    </div>
+    <div class="role">
+      <h4>Accenture – Senior Analyst</h4>
+      <span>Oct 2017 – Aug 2023</span>
+      <ul>
+        <li>Life-sciences Track & Trace SME</li>
+        <li>EU, US, Russia, China, India mandates</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content">
+  <h3>Education & Certifications</h3>
   <ul>
-    <li><strong>Viatris</strong> – Program Manager (2023–Present)</li>
-    <li><strong>Accenture</strong> – Senior Analyst (2017–2023)</li>
+    <li>MBA – HR Management, Anna University</li>
+    <li>B.E – Electronics & Instrumentation</li>
+    <li>TraceLink Admin, Tosca, Python, Power Apps, GenAI</li>
   </ul>
 </div>
 
 <div class="tab-content">
-  <ul>
-    <li>MBA – Anna University</li>
-    <li>B.E – Panimalar Engineering College</li>
-    <li>TraceLink, Tosca, Python, Power Apps, GenAI</li>
-  </ul>
-</div>
-
-<div class="tab-content">
+  <h3>Awards & Languages</h3>
   <ul>
     <li>Viatris Excellence Award – 2024</li>
     <li>Pfizer Innovator – 2022</li>
+    <li>Delivery Champion – Multiple years</li>
     <li>Tamil, English, Hindi</li>
   </ul>
 </div>
@@ -214,58 +276,32 @@ header {
 </section>
 </div>
 
-<!-- CONTACT MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <h3>Contact Raghul</h3>
-    <p style="color:var(--muted)">Enter your email to proceed</p>
-    <input type="email" id="visitorEmail" placeholder="you@email.com" required>
-    <button onclick="sendEmail()">Send Email</button>
-  </div>
-</div>
-
 <script>
-const OWNER_EMAIL = "yourname@email.com";
+function openTab(index) {
+  document.querySelectorAll('.tab-content').forEach((c,i)=>{
+    c.classList.toggle('active', i===index);
+  });
+  document.querySelectorAll('.tab-labels button').forEach((b,i)=>{
+    b.classList.toggle('active', i===index);
+  });
 
-/* Visitor count */
-let count = localStorage.getItem("visitCount") || 0;
-count++;
-localStorage.setItem("visitCount", count);
-document.getElementById("visitorCount").innerText =
-  "Profile viewed " + count + " times (this browser)";
-
-function openTab(i){
-  document.querySelectorAll('.tab-content').forEach((t,x)=>t.classList.toggle('active',x===i));
-  document.querySelectorAll('.tab-labels button').forEach((b,x)=>b.classList.toggle('active',x===i));
-  document.querySelectorAll('.bar-fill').forEach(b=>{
-    b.style.width='0';
-    if(i===1) setTimeout(()=>b.style.width=b.dataset,200);
+  document.querySelectorAll('.bar-fill').forEach(bar=>{
+    bar.style.width = '0';
+    if(index === 1) {
+      setTimeout(()=> bar.style.width = bar.dataset.width, 200);
+    }
   });
 }
 
-function toggleTheme(){
+function toggleTheme() {
   document.documentElement.classList.toggle('light');
+  localStorage.theme = document.documentElement.classList.contains('light') ? 'light' : 'dark';
 }
 
-function openContact(){
-  document.getElementById("modal").style.display="flex";
-}
+if(localStorage.theme === 'light') toggleTheme();
 
-function sendEmail(){
-  const email=document.getElementById("visitorEmail").value;
-  if(!email) return alert("Please enter email");
-
-  const body =
-`Visitor Email: ${email}
-Visited Count: ${count}
-
-I found your resume and would like to connect.`;
-
-  window.location.href =
-    `mailto:${OWNER_EMAIL}?subject=Resume Contact – Raghul R&body=${encodeURIComponent(body)}`;
-
-  document.getElementById("modal").style.display="none";
-  document.getElementById("contactDetails").style.display="block";
+function downloadPDF() {
+  window.print();
 }
 </script>
 
